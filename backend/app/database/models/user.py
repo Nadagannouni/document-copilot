@@ -1,8 +1,7 @@
 from uuid import UUID
 
-from sqlalchemy import String
+from sqlalchemy import ForeignKey, String
 from sqlalchemy.dialects.postgresql import JSONB
-from sqlalchemy.dialects.postgresql import UUID as PostgresUUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database.base import Base, TimestampMixin
@@ -12,7 +11,7 @@ class User(TimestampMixin, Base):
     __tablename__ = "users"
 
     id: Mapped[UUID] = mapped_column(
-        PostgresUUID(as_uuid=True),
+        ForeignKey("auth.users.id", ondelete="CASCADE"),
         primary_key=True,
     )
     email: Mapped[str] = mapped_column(String(320), nullable=False, unique=True)

@@ -39,7 +39,7 @@ Recommended sequence:
 
 ## Phase 2 - Database Schema
 
-- [ ] Set up Alembic in `backend/`.
+- [x] Set up Alembic in `backend/`.
 - [x] Create SQLAlchemy models in `app/database/models/`, one file per model.
 - [x] Model `users`.
 - [x] Model `chat_threads`.
@@ -47,10 +47,10 @@ Recommended sequence:
 - [x] Model `message_citations`.
 - [x] Model `source_documents`.
 - [x] Model `document_chunks`.
-- [ ] Add an initial migration that enables `pgvector`.
-- [ ] Add vector columns, generated full-text search vectors, HNSW indexes, GIN indexes, and normal relational indexes.
-- [ ] Add RLS policies for user-owned chat data.
-- [ ] Add service-role-safe policies for ingestion and document writes.
+- [x] Add an initial migration that enables `pgvector`.
+- [x] Add vector columns, generated full-text search vectors, HNSW indexes, GIN indexes, and normal relational indexes.
+- [x] Add RLS policies for user-owned chat data.
+- [x] Add service-role-safe policies for ingestion and document writes.
 - [ ] Apply migrations against Supabase using the direct/session `DATABASE_URL`.
 
 ## Phase 3 - Supabase Auth Boundary
@@ -163,4 +163,4 @@ Recommended sequence:
 
 ## Current Next Step
 
-- [ ] Build Phase 1 first: backend skeleton, configuration, health endpoint, CORS, logging, and test setup.
+- [ ] Review and apply the initial Alembic migration using the direct/session Supabase `DATABASE_URL`.

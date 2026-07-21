@@ -1,11 +1,20 @@
 from datetime import datetime
 
-from sqlalchemy import DateTime, func
+from sqlalchemy import Column, DateTime, Table, func
+from sqlalchemy.dialects.postgresql import UUID as PostgresUUID
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
 class Base(DeclarativeBase):
     pass
+
+
+_auth_users = Table(
+    "users",
+    Base.metadata,
+    Column("id", PostgresUUID(as_uuid=True), primary_key=True),
+    schema="auth",
+)
 
 
 class CreatedAtMixin:
