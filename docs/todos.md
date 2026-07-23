@@ -51,7 +51,7 @@ Recommended sequence:
 - [x] Add vector columns, generated full-text search vectors, HNSW indexes, GIN indexes, and normal relational indexes.
 - [x] Add RLS policies for user-owned chat data.
 - [x] Add service-role-safe policies for ingestion and document writes.
-- [ ] Apply migrations against Supabase using the direct/session `DATABASE_URL`.
+- [x] Apply migrations against Supabase using the direct/session `DATABASE_URL`.
 
 ## Phase 3 - Supabase Auth Boundary
 
@@ -163,4 +163,4 @@ Recommended sequence:
 
 ## Current Next Step
 
-- [ ] Review and apply the initial Alembic migration using the direct/session Supabase `DATABASE_URL`.
+- [ ] Build Phase 3 next: Supabase auth token verification and user-scoped chat authorization.
