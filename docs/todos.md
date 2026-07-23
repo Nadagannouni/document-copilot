@@ -55,12 +55,12 @@ Recommended sequence:
 
 ## Phase 3 - Supabase Auth Boundary
 
-- [ ] Add `app/auth/dependencies.py` to verify `Authorization: Bearer <token>`.
-- [ ] Derive the authenticated user ID and email from Supabase Auth.
-- [ ] Reject missing or invalid tokens with `401 Unauthorized`.
-- [ ] Add user-scoped chat thread authorization.
-- [ ] Add database client construction in `app/database/supabase.py`.
-- [ ] Add tests for auth success, missing token, invalid token, and cross-user thread access.
+- [x] Add `app/auth/dependencies.py` to verify `Authorization: Bearer <token>`.
+- [x] Derive the authenticated user ID and email from Supabase Auth.
+- [x] Reject missing or invalid tokens with `401 Unauthorized`.
+- [x] Add user-scoped chat thread authorization.
+- [x] Add database client construction in `app/database/supabase.py`.
+- [x] Add tests for auth success, missing token, invalid token, and cross-user thread access.
 
 ## Phase 4 - Chat API Contract
 
@@ -163,4 +163,4 @@ Recommended sequence:
 
 ## Current Next Step
 
-- [ ] Build Phase 3 next: Supabase auth token verification and user-scoped chat authorization.
+- [ ] Build Phase 4 next: chat API contract and stubbed streaming.
