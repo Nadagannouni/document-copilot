@@ -75,16 +75,16 @@ Recommended sequence:
 
 ## Phase 5 - Frontend Foundation
 
-- [ ] Scaffold the Vite React TypeScript SPA in `frontend/`.
-- [ ] Add Tailwind CSS and shadcn/ui setup.
-- [ ] Add React Router.
-- [ ] Add `src/lib/env.ts` to validate `VITE_API_BASE_URL`, `VITE_SUPABASE_URL`, and `VITE_SUPABASE_ANON_KEY`.
-- [ ] Add `src/lib/supabase.ts` for browser Supabase auth.
-- [ ] Add `src/lib/http.ts` for fetch, base URL handling, auth token injection, timeouts, and typed errors.
-- [ ] Add `src/lib/api.ts` for thread and message calls.
-- [ ] Add sign-in and sign-out screens for email auth.
-- [ ] Add authenticated route protection.
-- [ ] Verify with `pnpm tsc --noEmit` and `pnpm lint`.
+- [x] Scaffold the Vite React TypeScript SPA in `frontend/`.
+- [x] Add Tailwind CSS and shadcn/ui setup.
+- [x] Add React Router.
+- [x] Add `src/lib/env.ts` to validate `VITE_API_BASE_URL`, `VITE_SUPABASE_URL`, and `VITE_SUPABASE_ANON_KEY`.
+- [x] Add `src/lib/supabase.ts` for browser Supabase auth.
+- [x] Add `src/lib/http.ts` for fetch, base URL handling, auth token injection, timeouts, and typed errors.
+- [x] Add `src/lib/api.ts` for thread and message calls.
+- [x] Add sign-in and sign-out screens for email auth.
+- [x] Add authenticated route protection.
+- [x] Verify with `pnpm tsc --noEmit` and `pnpm lint`.
 
 ## Phase 6 - Frontend Chat Experience
 
