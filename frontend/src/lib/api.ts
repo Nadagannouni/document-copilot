@@ -1,5 +1,6 @@
 import { env } from '@/lib/env'
 import { http } from '@/lib/http'
+import { getAccessToken } from '@/lib/supabase'
 
 export type ChatRole = 'user' | 'assistant' | 'system'
 
@@ -35,6 +36,11 @@ export type CreateThreadRequest = {
 export type ChatStreamRequest = {
   threadId: string
   messages: unknown[]
+}
+
+export type ChatStreamHandlers = {
+  onComplete?: (content: string) => void
+  onDelta: (text: string) => void
 }
 
 type ListThreadsResponse = {
@@ -114,5 +120,89 @@ export const api = {
     const response = await http.get<ListThreadsResponse>('/chat/threads')
     return response.threads.map(mapThread)
   },
+  streamChat: (body: ChatStreamRequest, handlers: ChatStreamHandlers, signal?: AbortSignal) =>
+    streamChat(body, handlers, signal),
   streamChatUrl: `${env.apiBaseUrl}/chat/stream`,
+}
+
+async function streamChat(
+  body: ChatStreamRequest,
+  handlers: ChatStreamHandlers,
+  signal?: AbortSignal,
+): Promise<void> {
+  const token = await getAccessToken()
+  const headers = new Headers({
+    Accept: 'text/event-stream',
+    'Content-Type': 'application/json',
+  })
+
+  if (token) {
+    headers.set('Authorization', `Bearer ${token}`)
+  }
+
+  const response = await fetch(api.streamChatUrl, {
+    body: JSON.stringify(body),
+    headers,
+    method: 'POST',
+    signal,
+  })
+
+  if (!response.ok) {
+    throw new Error(await response.text())
+  }
+
+  if (!response.body) {
+    throw new Error('Chat stream did not include a response body')
+  }
+
+  const reader = response.body.getReader()
+  const decoder = new TextDecoder()
+  let buffer = ''
+
+  while (true) {
+    const { done, value } = await reader.read()
+    if (done) {
+      break
+    }
+
+    buffer += decoder.decode(value, { stream: true })
+    const events = buffer.split('\n\n')
+    buffer = events.pop() ?? ''
+
+    for (const event of events) {
+      handleStreamEvent(event, handlers)
+    }
+  }
+
+  if (buffer) {
+    handleStreamEvent(buffer, handlers)
+  }
+}
+
+function handleStreamEvent(eventText: string, handlers: ChatStreamHandlers): void {
+  const lines = eventText.split('\n')
+  const event = lines.find((line) => line.startsWith('event: '))?.slice(7)
+  const dataLine = lines.find((line) => line.startsWith('data: '))
+  const payload = parseStreamPayload(dataLine?.slice(6))
+
+  if (event === 'delta' && typeof payload.text === 'string') {
+    handlers.onDelta(payload.text)
+  }
+
+  if (event === 'complete' && typeof payload.content === 'string') {
+    handlers.onComplete?.(payload.content)
+  }
+
+  if (event === 'error') {
+    throw new Error(typeof payload.detail === 'string' ? payload.detail : 'Chat stream failed')
+  }
+}
+
+function parseStreamPayload(data: string | undefined): Record<string, unknown> {
+  if (!data) {
+    return {}
+  }
+
+  const parsed = JSON.parse(data)
+  return parsed && typeof parsed === 'object' ? (parsed as Record<string, unknown>) : {}
 }

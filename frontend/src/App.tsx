@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { RequireAuth } from '@/components/auth/RequireAuth'
 import { AuthProvider } from '@/lib/auth'
-import { ChatHomePage } from '@/pages/ChatHomePage'
+import { ChatPage } from '@/pages/ChatPage'
 import { SignInPage } from '@/pages/SignInPage'
 import { SignOutPage } from '@/pages/SignOutPage'
 import { SignUpPage } from '@/pages/SignUpPage'
@@ -14,7 +14,8 @@ function App() {
         <Route element={<SignInPage />} path="/sign-in" />
         <Route element={<SignUpPage />} path="/sign-up" />
         <Route element={<RequireAuth />}>
-          <Route element={<ChatHomePage />} path="/chat" />
+          <Route element={<ChatPage />} path="/chat" />
+          <Route element={<ChatPage />} path="/chat/:threadId" />
           <Route element={<SignOutPage />} path="/sign-out" />
         </Route>
         <Route element={<Navigate to="/chat" replace />} path="*" />

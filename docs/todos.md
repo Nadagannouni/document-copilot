@@ -64,14 +64,14 @@ Recommended sequence:
 
 ## Phase 4 - Chat API Contract
 
-- [ ] Add `GET /chat/threads` to list the current user's threads.
-- [ ] Add `POST /chat/threads` to create a new thread.
-- [ ] Add `GET /chat/threads/{thread_id}/messages` to load message history.
-- [ ] Add `POST /chat/stream` with a stubbed assistant response.
-- [ ] Translate the frontend AI SDK message shape into internal backend models.
-- [ ] Stream text deltas in the format expected by the installed AI SDK version.
-- [ ] Persist the final user and assistant messages after a successful stubbed run.
-- [ ] Return useful errors for `401`, `403`, `404`, `422`, and upstream failures.
+- [x] Add `GET /chat/threads` to list the current user's threads.
+- [x] Add `POST /chat/threads` to create a new thread.
+- [x] Add `GET /chat/threads/{thread_id}/messages` to load message history.
+- [x] Add `POST /chat/stream` with a stubbed assistant response.
+- [x] Translate the frontend AI SDK message shape into internal backend models.
+- [x] Stream text deltas over the backend-first SSE contract.
+- [x] Persist the final user and assistant messages after a successful stubbed run.
+- [x] Return useful errors for `401`, `403`, `404`, `422`, and upstream failures.
 
 ## Phase 5 - Frontend Foundation
 
@@ -88,15 +88,15 @@ Recommended sequence:
 
 ## Phase 6 - Frontend Chat Experience
 
-- [ ] Add a thread list view.
-- [ ] Add a chat route for a selected thread.
-- [ ] Add message rendering for user and assistant messages.
-- [ ] Add streaming assistant response rendering.
-- [ ] Add loading, empty, error, and retry states.
-- [ ] Add citation chips on assistant messages.
-- [ ] Add a source passage panel or drawer that shows filing metadata and excerpt text.
-- [ ] Add clear unsupported-answer display for "not enough evidence" responses.
-- [ ] Keep the UI dense, calm, and analyst-oriented rather than marketing-like.
+- [x] Add a thread list view.
+- [x] Add a chat route for a selected thread.
+- [x] Add message rendering for user and assistant messages.
+- [x] Add streaming assistant response rendering.
+- [x] Add loading, empty, error, and retry states.
+- [x] Add citation chips on assistant messages.
+- [x] Add a source passage panel or drawer that shows filing metadata and excerpt text.
+- [x] Add clear unsupported-answer display for "not enough evidence" responses.
+- [x] Keep the UI dense, calm, and analyst-oriented rather than marketing-like.
 
 ## Phase 7 - Ingestion Pipeline
 
@@ -163,4 +163,4 @@ Recommended sequence:
 
 ## Current Next Step
 
-- [ ] Build Phase 4 next: chat API contract and stubbed streaming.
+- [ ] Build Phase 7 next: ingestion pipeline for SEC filings.

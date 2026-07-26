@@ -29,6 +29,10 @@ class Settings(BaseSettings):
         alias="OPENAI_EMBEDDING_MODEL"
     )  # pas de valeur par défaut donc Si une variable manque : ValidationError  au démarrage.Lequel est meilleur ?Ça dépend. En production on préfère souvent que l'application refuse de démarrer plutôt que d'utiliser une mauvaise configuration. donc pour la production, cette methode de ne pas mettre de valeur par défaut est préférable. Pour le développement, on peut mettre une valeur par défaut pour faciliter les tests.
     openai_embedding_dimensions: int = Field(alias="OPENAI_EMBEDDING_DIMENSIONS")
+    azure_openai_api_key: str = Field(alias="AZURE_OPENAI_API_KEY")
+    azure_openai_endpoint: str = Field(alias="AZURE_OPENAI_ENDPOINT")
+    azure_openai_api_version: str = Field(alias="AZURE_OPENAI_API_VERSION")
+    azure_openai_chat_deployment: str = Field(alias="AZURE_OPENAI_CHAT_DEPLOYMENT")
 
     allowed_origins_csv: str = Field(alias="ALLOWED_ORIGINS")
 
