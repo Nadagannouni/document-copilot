@@ -24,7 +24,7 @@ class Settings(BaseSettings):
         alias="DATABASE_URL"
     )  # ici il n a pas mis str, il a mis PostgresDsn, c est un type de pydantic qui valide que la valeur est une URL de base de données PostgreSQL valide. Cela permet de s'assurer que la chaîne de connexion fournie est correcte et peut être utilisée pour se connecter à la base de données.
 
-    openai_api_key: str = Field(alias="OPENAI_API_KEY")
+    openai_api_key: str = Field(default="", alias="OPENAI_API_KEY")
     openai_embedding_model: str = Field(
         alias="OPENAI_EMBEDDING_MODEL"
     )  # pas de valeur par défaut donc Si une variable manque : ValidationError  au démarrage.Lequel est meilleur ?Ça dépend. En production on préfère souvent que l'application refuse de démarrer plutôt que d'utiliser une mauvaise configuration. donc pour la production, cette methode de ne pas mettre de valeur par défaut est préférable. Pour le développement, on peut mettre une valeur par défaut pour faciliter les tests.

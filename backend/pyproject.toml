@@ -21,6 +21,7 @@ dependencies = [
     "sqlalchemy==2.0.51",
     "structlog==26.1.0",
     "supabase==2.31.0",
+    "tiktoken==0.13.0",
     "uvicorn==0.51.0",
 ]
 
